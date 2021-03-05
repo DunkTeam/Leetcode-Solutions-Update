@@ -23,7 +23,7 @@ func twoSum(nums []int, target int) []int {
 		if v, ok := tmp[diff]; ok {
 			return []int{v, i}
 		}
-		// 没有找到
+		// 没有找到, 存入map
 		tmp[nums[i]] = i
 	}
 	return nil
