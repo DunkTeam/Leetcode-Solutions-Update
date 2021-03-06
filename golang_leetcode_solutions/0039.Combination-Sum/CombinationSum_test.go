@@ -14,52 +14,41 @@ type para struct {
 	target int
 }
 type ans struct {
-	a int
+	a [][]int
 }
 
 func TestSearchInsert(t *testing.T) {
 	qs := []question{
 		question{
 			para{
-				[]int{1, 3, 5, 6},
-				5,
-			},
-			ans{
-				2,
-			},
-		},
-		question{
-			para{
-				[]int{1, 3, 5, 6},
-				2,
-			},
-			ans{
-				1,
-			},
-		},
-		question{
-			para{
-				[]int{1, 3, 5, 6},
+				[]int{2, 3, 6, 7},
 				7,
 			},
 			ans{
-				4,
+				[][]int{
+					[]int{7},
+					[]int{2, 2, 3},
+				},
 			},
 		},
 		question{
 			para{
-				[]int{1, 3, 5, 6},
-				0,
+				[]int{2, 3, 5},
+				8,
 			},
 			ans{
-				0,
+				[][]int{
+					[]int{2, 2, 2, 2},
+					[]int{2, 3, 3},
+					[]int{3, 5},
+				},
 			},
 		},
 	}
 
 	for _, s := range qs {
 		p, a := s.para, s.ans
-		fmt.Printf("【input】:%v    【expected answer】:%v  【actual answer】:%v\n", p, a, searchInsert(p.nums, p.target))
+		fmt.Printf("【input】:%v    【expected answer】:%v  【actual answer】:%v\n", p, a, combinationSum(p.nums, p.target))
 	}
 
 }

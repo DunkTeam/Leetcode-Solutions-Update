@@ -12,7 +12,7 @@ type ans struct {
 	a int
 }
 
-func testremoveduplicates(t *testing.t) {
+func testRemoveDuplicates(t *testing.t) {
 	qs := []question{
 		question{
 			para{
