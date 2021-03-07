@@ -20,5 +20,44 @@ package leetcode
 // ]
 
 func subsets(nums []int) [][]int {
+	sort.Ints(nums)
 
+	var ans [][]int
+	var tmp []int
+	backtrack(&ans, tmp, nums, 0)
+	return ans
+}
+
+func backtrack(ans *[][]int, tmp []int, nums []int, start int) {
+	// 结束条件
+	if start == len(nums) {
+		t := make([]int, len(tmp))
+		copy(t, tmp)
+		*ans = append(*ans, t)
+		return
+	}
+
+	// 每一层有两种选择
+	// 1.不选下标为start的值
+	backtrack(ans, tmp, nums, start+1)
+	// 2.选下标为start的值
+	tmp = append(tmp, nums[start])
+	backtrack(ans, tmp, nums, start+1)
+	tmp = tmp[:len(tmp)-1] // 复位
+}
+
+func backtrack1(ans *[][]int, tmp []int, nums []int, start int) {
+	t := make([]int, len(tmp))
+	copy(t, tmp)
+	*ans = append(*ans, t)
+
+	// 每一层有 len(nums) - start中选择
+	for i := start; i < len(nums); i++ {
+		// if i > start && nums[i] == nums[i-1]{
+		// 	continue
+		// }
+		tmp = append(tmp, nums[i])
+		backtrack(ans, tmp, nums, i+1)
+		tmp = tmp[:len(tmp)-1]
+	}
 }

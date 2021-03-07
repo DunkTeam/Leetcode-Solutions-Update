@@ -32,7 +32,7 @@ import (
 
 // backtracking question
 // 回溯法可能对相同的节点访问多次；深度优先遍历需要记录节点是否被访问过
-// 回溯法是建立“状态树”的过程，有可能需要剪枝
+// 回溯法是建立“状态树”的过程，有可能需要剪枝.  需要思考结束条件；每一层有几种选择
 func combinationSum(candidates []int, target int) [][]int {
 	// 排序是为了剪枝
 	sort.Ints(candidates)
@@ -46,6 +46,7 @@ func combinationSum(candidates []int, target int) [][]int {
 // start表示从数组的第几个开始
 // 对切片使用append之后，其底层数组会发生变化, 因此ans必须使用指针
 func backtrack(ans *[][]int, tmp []int, candidates []int, remain int, start int) {
+	// 结束条件
 	if remain < 0 {
 		return
 	} else if remain == 0 {
@@ -57,14 +58,15 @@ func backtrack(ans *[][]int, tmp []int, candidates []int, remain int, start int)
 	}
 
 	// 正常处理逻辑
+	// 每一层有len(candidates)-start 个选择
 	for i := start; i < len(candidates); i++ {
 		// 剪枝
 		if candidates[i] > remain {
 			break
 		}
 		tmp = append(tmp, candidates[i])
-		backtrack(ans, tmp, candidates, remain-candidates[i], i)
-		tmp = tmp[:len(tmp)-1] // 删除最后一个, 也就是回溯
+		backtrack(ans, tmp, candidates, remain-candidates[i], i) // 传入i是因为自身可以被重复选择
+		tmp = tmp[:len(tmp)-1]                                   // 删除最后一个, 也就是回溯
 	}
 
 }

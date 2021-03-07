@@ -27,6 +27,7 @@ func search(nums []int, target int) int {
 			return mid
 		} else if nums[mid] > nums[left] {
 			// mid 落在数值大的一部分区间里
+			// 比较target
 			if nums[left] <= target && nums[mid] > target {
 				right = mid - 1
 			} else {
@@ -34,7 +35,7 @@ func search(nums []int, target int) int {
 			}
 		} else if nums[mid] < nums[right] {
 			// mid 落在数值小的一部分区间里
-			if nums[mid] < target && target <= nums[mid] {
+			if nums[mid] < target && target <= nums[hight] {
 				left = mid + 1
 			} else {
 				right = mid - 1
