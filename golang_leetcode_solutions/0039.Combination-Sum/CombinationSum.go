@@ -31,6 +31,7 @@ import (
 // ]
 
 // backtracking question
+// https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
 // 回溯法可能对相同的节点访问多次；深度优先遍历需要记录节点是否被访问过
 // 回溯法是建立“状态树”的过程，有可能需要剪枝.  需要思考结束条件；每一层有几种选择
 func combinationSum(candidates []int, target int) [][]int {

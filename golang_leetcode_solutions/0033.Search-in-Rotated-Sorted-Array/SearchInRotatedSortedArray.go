@@ -26,16 +26,18 @@ func search(nums []int, target int) int {
 		if nums[mid] == target {
 			return mid
 		} else if nums[mid] > nums[left] {
-			// mid 落在数值大的一部分区间里
-			// 比较target
+			// mid 落在数值大的一部分区间里  left ---mid --- pivot --- right
 			if nums[left] <= target && nums[mid] > target {
+				// 比较target
+				// nums[left] --- target --- nums[mid] -- nums[pivot] --- nums[right]
 				right = mid - 1
 			} else {
 				left = mid + 1
 			}
 		} else if nums[mid] < nums[right] {
-			// mid 落在数值小的一部分区间里
+			// mid 落在数值小的一部分区间里 left ---- pivot -- mid --- right
 			if nums[mid] < target && target <= nums[hight] {
+				// nums[left] --- nums[pivot] --nums[mid] --- target ---  nums[right]
 				left = mid + 1
 			} else {
 				right = mid - 1
